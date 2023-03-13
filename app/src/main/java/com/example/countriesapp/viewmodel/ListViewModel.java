@@ -1,8 +1,11 @@
 package com.example.countriesapp.viewmodel;
 
+import android.widget.ListView;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.countriesapp.di.DaggerApiComponent;
 import com.example.countriesapp.model.CountriesModel;
 import com.example.countriesapp.model.CountriesService;
 
@@ -28,6 +31,11 @@ public class ListViewModel extends ViewModel {
     //Entry point for the view in our ViewModel
     public void refresh(){
         fetchCountries();
+    }
+
+    public ListViewModel(){
+        super();
+        DaggerApiComponent.create().inject(this);
     }
 
     private CompositeDisposable disposable = new CompositeDisposable();
